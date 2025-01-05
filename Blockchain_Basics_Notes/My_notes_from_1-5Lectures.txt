@@ -1,0 +1,153 @@
+Video 1 Notes :- 
+Computer science fundamentals - 
+1 byte = 8 bits
+1 byte = 2 hexadecimal number
+1 hexadecimal number = 4 bits
+
+why Blockchain ? :- 
+because of internet we can talk with thousands of people in very fast and effiicent way, in an single click we can talk from anywhere present in the world to the other person present on different side of the globe e.g email
+
+internet lacks on the trust i.e internet has trust issue, in internet the biggest problem is present is Transparency, there is no transparency , they don't know is that money is in safe hands or not, major points which lacks in internet are
+1. Trust Issues
+2. Transparency
+3. Centralization
+
+Blockchain solves this problem , Blockchain = Transparency + Decentralization
+
+let i should make it clear , Blockchain doesn't means decentralization , we can achieve decentralization through blockchain technology,
+to agar koi company kehti hai ki me blockchain use kar rahe hai to iska bikul matlab nahi hai ki wo decentralization pe work kar rahi hai nahi wo blockchain bass technology ka use kar rahi hai , to decentralization hai asa jaruri nahi hai
+
+what is web1, web2, web3
+web1 :- in this we can just read the data through internet
+web2 :- in this we can communicate , and can produce the data like post, reel, shorts
+web3 :- it has all features of web2 with that ye hame provide karta hai data ki onwership , yani apna data apne pass secured , priacy friendly hai
+
+what is Blockchain? :- Blockchain is a distributed immutable ledger which is completely transparent
+
+ledger :- a place where all transcations get recorded, in blockchain world this ledger becomes the blocks
+
+immutable :- iska matalb hai ki ek barr jo data records transcations ledger me record ho gaye , phir to na usse change na edit kiya ja sakta hai 
+
+transparent :- data jo hai agar wo public blockchain me hai to wo data publicaly availble hota hai lekin encrypted format me
+
+Video 2 Notes:- 
+who invented blockchain :- W.Scott Stornetta and Stuart Harbar
+Bitcoin invented by :- Satoshi Nakamoto
+
+must watched movie to understand the economic crisis and bitcoin popularity:- THE BIG SHORT 
+
+what is bitcoin :- Bitcoin is decentralized digital currency , without a central bank or single adminstarator, that can be sent on user to user on the peer-to-peer bitcoin network without the need of intermediaries
+it uses Blockchain Technology.
+
+why trust on blockchain :- because the source code , the maths is openly avaible to each and everyone on github
+
+Blockchain Applications :- Finance, Gaming, Adminstration, Health instituations
+
+Types of Blockchain :- 1) Public 2) Private
+
+Public Blockchain e.g are Bitcoin and Ethereum
+Private Blockchain e.g are Hyperledger and R3 Corda
+
+Video 3 Notes :-
+Block Architecture :- 
+it consits of :- 
+Block No :- it indicates the block number present in blockchain  
+Data :- it represents the records or transcations
+Prev Hash :- previous block hash stored in the block
+Hash :- block hash value i.e unique identity
+
+in blockchain the very first block i.e very first block in blockchain called Gensis Block , it doesn't have any prev Hash
+
+the hash is get generated with the help of SHA256 Algorithm
+SHA26 algorithm kehta hai ki wo document, audio , video de dete hai and phir wo usse apne algorithm me process karne ke badd output deta hai jo ki hexadecimal characters hote hai 
+this has 64 hexadecimal characters , Each character is of 4 bits. so in total it has 64* 4 bits i.e 256 bits
+- the inputs of SHA256 are Block No, Data, Prev Hash
+- the output of SHA256 is the Hash
+
+Bitcoin Vs Ethereum (Application) :-
+- In Bitcoin blockchain network only the transcations of bitcoin is done
+- In Ethereum network we can transcat the ethere as well as we can deploy smart contract
+- Bitcoin ke blockchain par sirf ham financial transcations kar sakte hai, and ethereum ke case me aap apni decentralised programs create and depoly kar sakte ho
+
+Why Bitcoin does not support apps ?:- Because the Bitcoin scirpt jo hai wo hoti hai Not Turing Complete	, Not turing complete means jo bitcoin ka program hai wo sare tarah ke functions perform nahi kar sakta for e.g for loop , and loops program ham bitcoin script me nahi likh sakte
+- and in ethereum ke case me Solidity jo ki hoti hai Turing Complete, kyuki solidity Turing complete hoti hai aap kisi bhi tarah ka program likh sakte ho, kyu ki solidity loops ko support karti hai
+
+kyu bitcoin ki script me loops nahi run kar skate the , to socho ek barr agar loops allowed ho jate then kisi ne bitcoin ki script par infinite loop laga diya to wo loop to pure network ko baitha dega , lekin ab sawal atta hai ethereum me kyu loops ki facility di gayi hai tu uske liye concept introduce hua Ethereum Gas
+
+Ethereum Gas :- agar aap koi bhi instructions excute karoge apne smart contract pe and wo smart contract aap deploy karoge blockchain pe to har ek instruction ke liye to aapko paise dene padenge like e.g plus karo ya minus karo aapko gas yani paise dene padenge
+
+in instructions execution kitni gas lagti hai :- 
+Multiplication - 5 gas
+Addition - 3 gas
+Substraction - 3 gas
+Equal to - 3 gas
+
+Video 4 :- 
+1 Gas Price = 10 gwei
+the smallest unit of ETH is called a wei, which equivalents to 10 ^-18 ETH
+What is Gas Price :-
+- It is the amount the sender wants to pay per unit of gas to get the transaction mined. gasPrice is set by t
+he sender
+- Gas Prices are denoted in gwei. (1 gwei = 10 ^-9 ETH)
+- The higher the gas price the faster the transaction will be mined. it just like the transaction in Bitcoin
+
+Quiz url at time stamp 18:20
+
+Some Quiz Questions highlights :- 
+- Peer-to-Peerr (P2P) computing or networking is a distributed application architecture that partitions tasks or workloads between peers
+- SHA256 generates 64 hexadecimal characters
+
+Ethereum Gas Limit :- 
+- koi bhi transactions jab aap ethereum par karoge tab aapko pahele se he etherum ko batana padega ki mera ye transaction kitna paisa kharch karne wala hai ya phir kitni gas consume karne wala hai aur isi cheez ko kaha jata hai gas limit
+- iski utility kya hai ki aap/ham infinite loop run nahi kar payenge ethereum pe kyu nhi run kar payenge kyuki infinite loop run karne ke liye ham kya batayenege infinite gas jo ki possible nahi hai yani ethereum reject kar dega
+- it is the maximum gas the transaction can consume
+- set by the sender
+- the minimum gas limit amount of ether is 21 thousand16:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-202516:37 04-01-2025
+
+- agar gasLimit > gas consumed agar yes hai yani agr mene gas limit set kar di 42,000 aur consumed hue 30,000 to remaining gas aapko return kar di jati hai
+- lekin agar gasLimit > gas consumed agar no hai yani agr mene gas limit set kar di 22,000 aur consumed hue 30,000 to ethereum mere transaction ko revert kar dega, aur sath he sath jo paise lagaye the ethereum par yani ki gas wo bhi aapko waps nahi milega
+
+- Gas is depend on size of contract plus the type of intruction/transaction excuteion
+
+How To Become Part of The Network :- 
+Agar aapko blockchain network/ethereum network ka part banana hai to aap ko ek software download karna padta jiska namm hai "Geth"
+- basically ethereum network ka part banene ke liye hame client bana padta hai usse network ka aur wo ham "Geth" software se kar sakte hai
+- and for bitcoin ke case is software ka namm hota hai "bitcoin-client"
+- to har ek software ke liye unka ek software install karna padta hai and then you are good to go.
+- jase heham client yani Geth ko install karte hai apni system par to "EVM" ye install ho jata hai 
+- EVM :- Ethereum Virtual Machines
+- and jase he "EVM" aapke system pe run karne lagti hai to usse kaha jata hai "Node"
+- Blockchain ke network pe system ko ham computers nahi node kehete hai
+
+Video 5:-
+Types of Nodes :-
+1) Full Node :- 
+- full node aapko capbility deti hai mining karne ki agar aapko miner banana hai to aapko full node ko he install karna padega
+- full node aapko power deti hai ki transcations karne ki bina koi third party aap ko install kare jase ki e.g mujhe mere friend ko ether dene hai to me without metamask me usse 5 ethere send kar sakta hu
+- sath he sath aapke pure network me jo bhi data hai wo aake aapke system pe install hone lagega
+- Stores full blockchain data (although this is periodically pruned so a full node does not store all state data back to genesis)
+- Participates in block validation, verifies all blocks and states.
+- Serves the network and provides data on request.
+- All states can be derived from a full node (although very old states are reconstructed from requests made to archive nodes)
+- iski storage ke batt kare to aapke computer me kam se kam 512 GB SSD storgae honi chaiye and kam se kam 8GB ya 16GB ki RAM honi chaiye tabhi aap ek full node bann sakte ho otherwise aapka computer fulll ho jayega
+- Sath he sath internet connection hona chaiye aur aapka computer 24 hours chalte rahana chaiye tbhi aapka data easily sync hote rahega
+
+2) Light Node :- 
+- agar aapko verification validation nahi karna hai aapko bass transactions karna hai to aap light node ko install kar sakte ho
+- Stores only the block header and depends on full node.
+- for low capacity devices which cannot afford to store the gigabytes of data.
+- the light nodes do not participate in consensus (i.e they cannot be miners/validators), but they can acess the Ethereum blockchain with the same functionality as a full node.
+- yani ham data ko acess kar payenge , data ko read kar payenge lekin ham miners nahi bann sakte
+- light node ke pass basically ham bol sakte hai ki merkel tree hota hai , jisse wo kisi bhi data ke pass easily poch jata hai
+- yani light node request karti hai Full Node se full node phir jayega blockchain me aur wo data leke aayega lekin agar data jyda purana hai to full node jayega archive node ke pass aur archive node se data leke full node dega light node ko
+
+3) Archive Node :-
+- stores everything kept in the full node and built an archive of historical data.
+- matalb jitna me data bana hai pura sara data is node me store hote jata hai
+- requires terabytes of diskspace.
+
+- Types of Accounts :-
+1) Externally Owned Account (EOA) :- 
+- ye jo account hai wo ek person hold karta hai
+2) Contract Account :- 
+- jabki contract account aapke contract ka address hold karta hai

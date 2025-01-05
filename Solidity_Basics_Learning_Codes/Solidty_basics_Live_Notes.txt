@@ -1,0 +1,339 @@
+Contents :-
+- what is smart contract ?
+- Smart contract Application
+- Smart contract Features
+- what is solidity ?
+- solidity compilation process
+- remix ide
+- state variables
+- local variables
+- functions
+- visibility specifier
+- conditionals
+- basic data types
+- much more
+
+what is smart contracts :-
+- smart contracts are simply programs stored on a blockchain.
+- these programs are special because they are run on blockchain not on server.
+- e.g Tron,Solana,Ethereum
+
+Smart contract Application :-
+- Supply chain managment, because smart contracts are transparent , publically available, no human intervetion needed, immutable
+
+Smart contract Features :-
+- Smart contracts are immutable as they get stored on Blockchain.
+- Smart contract contracts have their own accounts where it can store cryptocurrency.
+- No human intervention is required for cryptocurrency transfer or receiving.
+
+what is solidity ? :-
+- Solidity is an object-oriented programming language for implementing smart contracts for ethereum blockchain
+- High-level statically typed programming language.
+- Case sensitive.
+- With Solidity you can create contracts for uses such as voting, crowdfunding, blind auctions, and multi-signature wallets.
+- Note - You should follow established development best-practices when writing your smart contracts.
+
+Remix IDE :-
+- the native IDE for web3 development
+- remix ide aapke kamm bhot jyda easy kar deti hai chahe aapko contract deploy karna ho, different plugins use karna ho, smart contract ko compile karna ho
+- SPDX Licenese ek asi cheez hai jo aapke smart contract code ko copy paste hone se bachta hai by providing the license number
+- prgma solidity >= 0.5.0 <0.9.0
+this line means ki mera solidity code 0.5.0 se leke 0.9.0 takk ke sare versions ke liye compatible hai
+- asa jaruri nahi ki contract name aur file name same ho , lekin for better understanding , sahuliyt ke liye ham dono name same rakhte hai
+- contract declare ya likhne ke liye ham contract keyword ka use karte hai 
+- syntax :- contract contract_name , e.g contract demo {}
+- and the code of contract write in {} this parenthesis
+- pahela step yahi hota hai ki ham apne contract ko compile karte hai
+- then compile karne ke badd aapko agli step karni hoti hai jo hai deploy karna , smart contract ko deploy karna
+- ham log jo bhi transcation karnege hamare smart contract me us sab ke sab transaction ko blockchain ke duniya me ham kehte hai transaction
+- contract address ka kam hota hai contracts ko identified karna
+- in enviroment section which is present in remix ide , in enviroment section ham ye batate hai ki hamara smart contract kaha depoly karna hai
+- we can write multiple contracts in single file
+
+Solidity Compilation Process (very imp):-
+- SolC is the name of solidity compiler
+- source.sol file ko hamne solidity compiler ko compile karne bheja jata hai aur uske badd compiler ka kamm hota hai code ko 2 parts me divide kar deta hai 
+- ek hoti hai "ABI" and dusra hoti hai "Byte Code"
+- ABI ka full form hota hai "Application Binary Interface"
+- ABI basically wo code hota hai jiske through ham apne smart contract ke sath batt cheet karte hai, basically ek mediam hai jo smart contract se interact karne ke liye use hota hai in between ham aur hamara smart contract
+- Without ABI ham hamare smart contract ke sath batt cheet nahi kar sakte
+- Byte code wo code hota hai basically jo ham hamare Ethereum blockchain pe deploy karte hai
+- Byte code wo set of instructions hote hai jiske through aapka smart contract execute hota hai
+- Byte code me basically high level lang code like jo human ne likha programming language me usse compiler low level language me convert kar deta hai kyu ki at the end computer low level language jo ki binary language hai and taki blockchain hamare code ya instruction ko smaj sake
+- Contract byte code is public in readable form.
+- Contract doesn't have to be public
+- Byte code is immutable because it is getting stored on Blockchain.
+- ABI Act as an bridge between applications and smart contract.
+- ABI and Byte code cannot be generated without source code.
+
+Video 2 :-
+State Variable :- 
+- agar ham koi bhi variable contract level yani ki contract ke {} parenthesis ke beech me declare karte hai to uss variable ko ham "state variable" kehte hai
+-e.g :-
+contract newContract{
+    // this below variable is state variable
+    // as this stores in contract level
+    uint public num1 = 5 // num1 - state variable
+}
+- state variable ek asa variable hota hai jo hamare blockchain par store hota hai, matalb ki ye wo variable hai jo permently store hota hai aapki blockchain par
+- gas cost is associated with state variables, matalb ki agar aap state variables bana rahe ho apne contract me to aapko gas yani paise pay karne padenge, kyuki aap ek space occuiped kar rahe ho aapki blockchain par wo bhi hamesha ke liye
+- state variables jo hai wo storage me jake save hote hai, jo ki permenent jahag hai jaha variables store ho rahe hai.
+- reading cost of state variable is 0 (zero), matalb ki aap apne state variable ko jab chahe tab read kar sakte hai but
+- writing a state variable cost you gas, means agar me state variable ki value ko change karta hu to muhje gas yani paise pay karne honge
+
+Local Variable :- 
+- local variable means koi bhi variable ham agar function ke andar banate hai to usse ham kehete hai "Local Variable"s
+e.g :-
+function localVariableSetter() public {
+        uint num2 = 10; //num2 - local variable
+}
+- local variables permanently blockchain par store nahi hota hai
+- gas cost is not associated with local variables
+- local variables jo hai wo stack me jake save hote hai,jo ki after completeion or excuetion of function remove ho jate hai , yani ki temporary variable
+- local variables ki as such koi cost nahi hoti read ya write karne ki.
+
+EVM :-
+- it stands for "Ethereum Virtual Machine".
+- EVM me basically Byte Code excute hota hai.
+- EVM basically ek Software bhi hota hai aur CLI bhi hota hai (Command Line Interace)
+- ye basically jab ham blockchain ke client software ko install karte hai tab hamara computer ek node ban jata hai basically
+- aur smart contract ke code ko run karne ke liye basically hame blockchain pe run karna hota hai to ye kamm karta hai hamara EVM.
+- EVM me basically alag alag storage and components hote hai like:-
+1) Program Counter :- ye basically aapke stack ke memory locations ko point karne ke kamm aata hai
+2) gas available
+3) stack :- stack wo jahag hai jaha aapke local variables store hote hai
+4) memory :- reference data type ke jo aapke variables hote hai wo memory me jake store hote hai
+5) Virtual ROM EVM code (immutable)
+6) (account) storage (world state persistent) :- yahi pe aapke state variables store hote hai jo ki hote hai permenatly store yani ki persistent
+
+Storage Area :-
+- Stack :- stack memory e.g RAM but for local memory, local variables data type
+- Memory :- volatile memory e.g RAM temporary memory, reference data type
+- (Account) storage :- persistent memory e.g hard disk storage hamesha ke liye store, state variables data type
+
+Functions :-
+- functions aap keh sakte ho wo chunks of code hai jisko aap jab chaye tab apne hisab se run kara sakte ho excute kara sakte ho
+- like there are certain things yani kuch code ya instructions jab ham chaiye tab excute ho
+- in writing function syntax there is requirment of visibility specifier
+- visibility specifier means aapka function kisko kisko visible hoga, aur ye write kiya jata hai after function_name()
+- and uske sath hame ek aur cheez solidity progmming lang. ko batani hoti hai ki hamara function ye function kis tarah se behave karta hai aapke state variables ke sath 
+- aur ye ham likhte hai visibility specifier ke badd
+- and agar hamne koi state variable use nahi kiya hua hai to ham kehenge ki hamra function "pure" hai ya ham state variable ke sath ko ched-chad nahi kar rahe hai to ham likhte hai "pure"
+- syntax and e.g of function :-
+syntax :- function function_name() visibility_specifier state_variable_behave {
+// code of function
+}
+e.g :-
+1) function addition() public pure{
+        // declare and initilzed a and b variables
+        uint a = 10;
+        uint b = 20;
+        // declare variable c
+        uint c;
+        // store the addition of variable a and b
+        c = a + b;
+}
+- ye addition function kuch value return nahi kar raha hai
+
+2) function subtraction() public pure returns(uint){
+        uint a = 10;
+        uint b = 20;
+        // below return keyword return wase he work karta hai jase other programming language me hota hai
+        return b-a;
+}
+explanation :-
+- es function me ham kuch value return karana chahte hai
+- to ham ek aur keyword ka use karte hai jo ki hai "return" (data_type_jo_return_karna_hai)
+- () round brackets me ham likhte hai ki hame konsa data type me return karna hai
+- and ye keyword "returns" keyword batata hai ki kis tarah ka data_type return ho raha hai
+
+3) function multiplication() public view returns(uint){
+        return num1*num2
+}
+explanation :-
+- let's make the function who reads the data of state variables
+- view esliye likha gaya hai 
+- kyuki es function me ham state variables ki value ko read kar rahe hai 
+- hamare function pe depend karta hai ki wo hamare ,
+- state variables ke sath kis tarah ka relation rakh raha hai
+
+4) function division(uint a, uint b) public pure returns(uint){
+        return a/b;
+}
+explanation :-
+- one more function e.g data ko ham function me kese accept 
+- ya parameters ko kese accept karte hai
+- parameters pass karne ke liye ham parameter data_type and variable name dete hai
+- pure esliye kyuki ye function state variables se kuch ched-chad nahi kar raha hai.
+
+- and every time you are calling a function you are basically doing the transcation, jab jab ham koi function ko call kar rahe hai to transaction ho raha hai
+- and yes you cannot perform any decimal operations in solidity 
+- like we cannot perform operation of float values
+
+- jab bhi aap koi bhi public state variable banate ho tab automatically uske liye ek function bann jata hais
+- state variable ka ek function automatically create hone ke liye state variable ko public declare karna padega aur ye jaruri hai
+- e.g :- 
+    // public state variable concept
+    uint public value = 10; 
+- automatically solidity create a getter function for it
+- getter function as means ki is variable me kya value store hai ham log usse check kar payenge
+- for every public state variable you create , solidity will create a getter function
+
+View v/s Pure :-
+- pehele to ye samjho ki hamara jo function hota hai uska jo relation hota hai hamare state variable ke sath uspe depend karta ki ham view use karnge , pure use karnge ya kuch use nahi karenge
+- to it's all depend hamara state variable hai uska kesa relation hai hamare function ke sath.
+- agar hamara function state variable ko "read" karta hai to waha ham "view" use karte hai
+- agar hamara function state variable ko "write" , changes karta hai hamare state variable me to waha ham kuch bhi use nahi karte hai
+- agar hamara function state variable ke sath koi bhi relation nahi rakhta hai na "read" na "write" ka to ham "pure" use karte hai
+- agar aapne function me state variable ko write kar diya to batt khatam ki aage uss function me state variable ko read karo ya waps write karo, write ki priority high hoti hai aur jab write kar rahe hai to ham koi keyword ka use nahi karte hai
+- e.g :- function changeState() public{
+        // num1 jo hai wo state variable hai
+        // aur usse waps write kiya ja raha hai
+        // kyuki hamne state me change laya to esliye na ham pure aur na ham view ka use karenge.
+        num1 = 100; // write
+        uint b;
+        uint b = num2 // read
+    }
+- ye function me to state variable ko / me write kara ja raha hai
+- esliye yaha pe kuch likha nahi hai
+
+Class Quiz :-
+- solidity Quiz 1:- https://forms.gle/eswcD6oHYwAqMbYv6
+- solidity Quiz 2:- https://forms.gle/mCv8GQ7HSMAXfCcC8
+
+Constructor :-
+- constructor bhi basically ek special type ka function hai
+- aur iss function ko ham directly call nahi karte hai lekin ye call ho jata hai jab ham apne smart contract ko depoly karte hai
+- matalb manually ham isse call nahi kar rahe hai but during deloyment ye automatically call ho jayega.
+- aur ek program me ek smart contract me aap sirf ek he constructor bana sakte ho
+- aur agar aap ek bhi constructor apne file me nahi banate ho to solidity apne aap se ek constructor bana leti hai , jiska as such kuch aap pe impact nahi hota hai.
+- aur tab na he wo constructor aako dikhyi deta hai , lekin wo waha hota hai.
+- e.g :- // constructor ka syntax
+    constructor(){
+        
+    }
+- through constructor function ham jo function ke thorugh kar pa rahe the like changing value of state variable , 
+- practical example :- 
+	address public manager
+    // constructor ka syntax
+    constructor(address user){
+        manager = user
+    }
+- is cheez ka use yaha pe hota hai jaha par ham chahte hai ki hamari jo cheez depolyment ke time he fix ho jaye
+- ya phir ham chahte hai ki koi logic depolyment ke time he run ho jaye.
+- there is no concpet of destructor in solidity.
+
+Video 3 :-
+Basic Data Types :- basic data types yani ki jo hamare fundamentals data type ho gaye wo wale, and their types are :-
+1) Integer Data Type :- 
+- agar aap integer data type ko theek se study nahi karoge to aapke milions of dollors ya bhot paise ka nuksan ho sakta hai
+- to integer data type me ham "int" se denote karte hai ya to "uint" se denote karte hai
+- "int" ka simply meaning hota hai "simply integer"
+- "uint" ka meaning hota hai jaha pe "u" stand karta hai "unsigned integer"
+- "int" jo hai wo aapke "positive" and "negative" dono numbers ko comparise karta hai yani ki int me positive numbers and negative numbers honge
+- jabki "uint" jo hai wo aapke sirf aur sirf "positive" numbers ko comparise karta hai yani ki uint me sirf aur sirf positive number honge
+- Signed and Unsigned integers can be of various sizes (very important to understand for optimization) :-
+	- int8 to int256 (in bits)
+	- uint8 to uint256 (in bits)
+- generally aap jab "int" likhte ho to aapka "int" jo hai wo int256 bits ko support kar raha hai.
+- and same with aap jab "uint" likhte ho to aapla "uint" jo hai wo uint256 bits ko support kar raha hai.
+- by default int and uint ki are initialized to zero. yasni ki by default int aur uint ki values zero se initialized ho jati hai
+- Overflow get detected at compile time.
+- jo 8 bits hai uska simply matalb hai ki range of numbers kya accomodate kar sakta hai aapka "int" aur "uint"
+- so in int8 :- ye support karega -128 to +127 ki values tak.
+- in uint8 :- ye support karega 0 to 255 ki values tak.
+- in int16 :- ye support karega -32768 to +32767 ki values tak.
+- in uint16 :- ye support karega 0 to 65535 ki values tak.
+
+- and here are formulas to calculate ki konsi bit kitna jyda values ki range ko support karti hai 
+for int :- -2^(n-1)to2^(n-1)-1
+for uint :- 0 to 2^(n)-1
+- remember the thing this is more important kyuki solidity me jo hai agar aap sahi se memory ka utilization nahi karte ho
+- yani ki solidity me ye imp hai gas ka cost solidity me increase ho jata hai agar aap faltu me memory ko waste kar rahe ho
+- explain the points in code section in "integer.sol"
+- in solidity there is no concept of "Null"
+- in solidity yaha pe jo koi bhi data type agar aapne declare kiya aur usko initilaised nahi kiya to by default uss variable ki jo value hogi wo uss data type ke according hogi
+- so in string ke case me bass declare kar diya to usski value hoti hai "empty"
+- and in bool ke case me wo by default wo false hoti hai
+
+2) Bool Data Type :-
+- ye data type basically wo data type hota hai jiski value ya to true hogi ya false hogi.
+- explain in code file Bool.sol
+    // syntax with example
+    bool public value = true;
+- public likhna optional hai aap likh sakte hai ya nahi bhi
+3) Address Data Type :-
+- ye data type use hota hai address store karne ke liye,
+- jase ki contract ka address ho gaya, user wallet ka address hua and etc.
+- explain in code file Address.sol
+	// syntax with example
+    address public addr = address_value
+- public likhna optional hai aap likh sakte hai ya nahi bhi
+
+4) Bytes Data Type :-
+- bytes data type use kab hota hai jab aap basically low-level instructions ke sath interact karna shuru karte ho
+- Bytes data type is used to store strings. Range - bytes1,bytes2,....,bytes32.
+- it stores characters.
+- ya phir jab aapko addresses ke sath deal karna hota hai, kuch cryptographically hashing se deal karna hai
+- kabhi kabhi string data type ki jahag ham bytes data type use karte hai kyuki bytes data type ek fixed value ko store karta hai
+- aur solidity me jo fixed type ke data type hote hai wo chepear hote hai compartively jo dynamic type ke data type hote hai.
+- isme aap aapko jitni bytes store karani hai aap bytes ke aage likh doge , e.g e bytes store karna hai to ham ese likhnge ,"bytes1" "bytes2
+- bytes me basically jo bhi data store hota hai wo at the end basically hexadecimal number ke form me store hota hai
+- and the maximum value of bytes can store is "bytes32" , aap uske aage store nahi kar sakte.
+- bytes work kar rahi hai array ki tarah
+- explain in code file Bytes.sol
+- i am means aman writing the code file name BytesAssignment.sol to understand the  bytes data type concept, do check the file for better understanding.
+- and there are some questions from the code , i will try to add those question and their answer, i am updating all the questions with answers.
+- the bytes are stored in hexadecimal form in solidity and they are store in storage.
+
+require Statment :-
+- require statment basically condition checking ke liye use karte hai.
+- condition checking ke darun agar result true aata hai to next line of codes pe move on kar jatte hai
+- but agar condition checking ke daurn agar result false aata hai to revert back kar jatte hai and we throw error
+- require statment sirf error he throw nahi karata hai wo aapko revert back karata hai 
+- revert back ka matalb hai, jab value false hui aur usne error throw kiya , jo cheeje uper se leker niche tak hui thi usko roll back kar diya
+- roll back yani ham valid ki initial value/state par aa gaye, jo bhi changes kiye the wo sab usne initial value/state par aa gaye
+-  jo bhi uss function ke andar hua hoga sirf wahi revert back hoga
+- lekin yaha par revert karne ke badd aapke koi bhi gas waps nahi honge.
+- better explain about code is in file require.sol
+- we cannot do nested require, means requires inside the require. there is no nested require.
+Video 4 :-
+
+Modifier :-
+- in modifiers ham tab use karte hai jab koi certain line of codes barr barr repeat ho rahe hai tab ham modifier ka use karte hai.
+- modifier me ham wo code likhte hai jo barr barr repeat ho raha hai.
+- explain all the concept thing in file Modifier.sol
+- jo aapke DeFi contracts hote hai usme ye bhot important concept hai aur bhot use hoti hai.
+- it will not save as much cost , kyuki code to at the end excute hoga he, lekin bass esse ham apna code more optimized and readable bana rahe hai.
+
+Loop :-
+- generally other programming languages ki tarah loops ka concept yaha par bhi hota hai
+- in this aap koi bhi loop laga sakte ho like for, while, do-while, lekin aap loop likhte samay aapko wo loop ek function me likhna padega
+- and there is reason behind this that is wo ye hai ki aap contract level par loop banaoge wo ek to jyda gas consume karega
+- and then wo excute hone lagega jase he contract depoly hua wase he ,to esliye jab hame loop ko excute karana ho tab he ham kara sake yani loop ko excute karan wo hamare control me , aur wo function ke through kar sakte hai, esse hamara excution ka time and gas bhi bachega.
+- loop ko ham function, modifier, struct, variable.	
+- explain all the concepts thing in file Loop.sol
+- in solidity you can return something out but you cannot print something, but agar ham hardhat ka use karte hai to wo hame functionality deta hai console.log() ki
+
+Conditionals :-
+- generally jase ki loop ko ham direct contract me nahi likh sakte wase he ham conditionals ko direct contract me nahi likh sakte.
+- ham conditionals ko function, modifier, variable, struct me likh sakte hai.
+- the major difference in conditionals and the require statment is require statment basically error throwing, revert back, transaction failed karne ke liye kamm aata hai, jaha aap chahte ho ki koi galat cheez ho to revert back kar jau to aap require statment ka he use karoge.
+- but agar koi asi cheez hai jaha aap chahte ho normal condition checking , agar true hai to ye karo aur false hai to ye karo, koi error nahi throw karna chahte ho, koi transcation failed nahi karana chahte ho
+- jaha aapko lagta hai ki require ko use karne ki jarurat hai aur yaha par aapko lagta hai conditonals ki jarurat hai waha according aap likhoge.
+- explain all the concepts thing in file Conditional.sol
+
+Visibility Specifier :-
+there are total 4 visibility specifiers :- i) PUBLIC ii) PRIVATE iii) INTERNAL iv) EXTERNAL
+and there are total 4 scenrios to use these specifiers :- i) Outside World ii) Within Contract iii) Derived Contract iv) Other contracts
+- to agar ham "PUBLIC" se koi function banate hai to wo har scenraios me active hoga
+- and agar ham "PRIVATE" se koi function banate hai to bass jaha usse banaya hai bass wahi use kar payenge i.e "Within Contract".
+- and agar ham "INTERNAL" se koi function banate hai to bass private ki tarah ye "Within Contract" me use kar sakte hai sath he sath ye "Derived Contract" me bhi accessible hota hai.
+- and agar ham "EXTERNAL" se koi function banante hai in our smart contract to bass wo wahi smart contract me chod ke baki wo har jahag accessible hota hai. i.e "Within Contract" ko chod ke baki har jahag ham use kar sakte hai.
+- syntax is present in file Visibility.sol
+- outside world ka matalb ye hai ki in future agar ham hamare solidity ke contract ko kisi external enviroment se connect karate hai tab jaise ki mene meri reactjs application ko smart contract se connect kiya, to waha pe ha public function accessible hota hai aur theek usi tarah se aapka external function accessible hota hai.
+- and after deploy ham sirf public and external functions ko acess kar sakte hai.
+- within the contract the external functions are not visible, but remaining other functions are acessible.
+- derived contract basically isme aapke contract ko innherit kiya jatta hai, aur jab aap inherit karte hai to tab agar wo ek he contract me ho raha hai to basically aapke private aur external keyword se likhe hue function ko acess nahi kar sakte, kyuki private to wase bhi acessible nahi hota hai and external se bane function within contract acessible nahi hote.
+- other contract me basically ek new object banaya jata hai aapke contract a , aur isme aap sirf public and external se written functions ko acess kar sakte ho.
+- kyuki private and internal to bass contract takk he restricted ho jate hai.
