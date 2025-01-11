@@ -24,9 +24,15 @@ contract Struct {
     // function to insert the data.
     function insert(string calldata _name, uint _roll, bool _pass) public {
         // to hame insert karna hai data , we can point out to specific data like this :-
-        s1.name = _name;
-        s1.roll = _roll;
-        s1.pass = _pass;
+        // the first method to run the first method uncomment the below three line codes.
+        // s1.name = _name;
+        // s1.roll = _roll;
+        // s1.pass = _pass;
+ 
+        // and instead of the above method we can also do like this
+        // the second method to run the second method comment/uncomment the below line of code.
+        // Student data type and in that stored all the required data , then this will get store to s1. 
+        s1 = Student(_name, _roll, _pass);
     }
 
     // function to get the data.

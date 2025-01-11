@@ -6,13 +6,12 @@
 // string name:- Empolyee Name.
 // uint256 salary :- Empolyee Salary.
 
-// Implement the following functionalities :- 
+// Implement the following functionalities :-
 // allow adding a new empolyee to the registry using a function addEmpolyee that takes id, name, and salaray as parameters.
 
 // Create a function getEmpolyee that takes an id as input and return's the empolyee's name and salary
 
-
-// HERE IS THE SOULTION :- 
+// HERE IS THE SOULTION :-
 
 // SPDX-License-Identifier: GPL-3.0
 
@@ -36,16 +35,26 @@ contract empolyeeRegistry {
     // implementation of functionalities
 
     // function of addEmpolyee.
-    function addEmpolyee(uint index, string calldata _name, uint _salary) public {
-        emp[index].id = index;
-        emp[index].name = _name;
-        emp[index].salary = _salary;
+    function addEmpolyee(
+        uint index,
+        uint _id,
+        string calldata _name,
+        uint _salary
+    ) public {
+        // as this is in dynamic array data so we don't push the data like this in dyanmic array
+        // emp[index].id = index;
+        // emp[index].name = _name;
+        // emp[index].salary = _salary;
+ 
+        // we push the data with the help of push.
+        // like this and this is for dyanmic size array :-
+        emp.push(Empolyee(_id,_name,_salary));
     }
-    
+
     // function of getEmpolyee
     // in returns we are not returning an entire array we just returning a single employee.
     // that's why we are writing Empolyee and as struct is a data type stored as memory.
-    function getEmpolyee(uint index) public view returns(Empolyee memory){
+    function getEmpolyee(uint index) public view returns (Empolyee memory) {
         return emp[index];
     }
 }

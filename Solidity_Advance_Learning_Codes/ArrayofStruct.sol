@@ -27,9 +27,16 @@ contract ArrayofStruct {
         bool _pass
     ) public {
         // to hame insert karna hai data wo bhi specific index par, we can point out to specific data like this :-
-        s[index].name = _name;
-        s[index].roll = _roll;
-        s[index].pass = _pass;
+        // the first method to run the first method uncomment the below three line codes.
+        // s[index].name = _name;
+        // s[index].roll = _roll;
+        // s[index].pass = _pass;
+
+        // and instead of the above method we can also do like this
+        // the second method to run the second method comment/uncomment the below line of code.
+        // Student data type and in that stored all the required data , then this will get store to s with the help of index. 
+        // this is for fixed size array 
+        s[index] = Student(_name, _roll, _pass);
     }
 
     // function to get the all data.
