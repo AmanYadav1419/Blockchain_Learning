@@ -4,6 +4,8 @@
 // function name be sendEth(), and there are multiple users who can acess this function
 // so that it stores who is calling the function i.e user address, how many eth value sends and the time of function calling
 
+// this assignment problem is solved using struct and array.
+
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.7.0 <0.9.0;
