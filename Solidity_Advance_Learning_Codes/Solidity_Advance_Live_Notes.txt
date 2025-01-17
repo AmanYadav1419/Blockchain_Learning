@@ -1,0 +1,168 @@
+Video 1 :-
+Content :- 
+1) Reference Data Type
+2) Data Location
+3) Fixed Array
+4) Dynamic Array
+5) Calldata vs Memory
+6) Storage vs Memory
+7) Structures
+8) Enum
+9) Mapping
+10) Global Variables
+11) Much More..
+
+Reference Data Type :-
+- there are different data types which are part of reference data type like Strings, Arrays, Mappings, Struct. these are known as reference data type.
+- reference data me basically aapko ye bhi batana hota hai ki aapka data kaha pe jake store hoga , like basically reference data type ke sath uski data/memory location bhi attach hoti hai.
+- data/memory locations basically hoti hai aapki memory, storage aur calldata hoti hai.
+- in english for above sentence :- If we use a reference type, we always have to explicitly provide the data area where the type is stored.
+- Every reference type has an additional annotation, the "data location", about where it is stored. There are three data locations:memory, storage, calldata.
+- The Data location and their description where it get used :-
+	- i) Memory :- 
+- memory basically tab use hoti hai jab basically aapke function ke jo arguments hai to waha memory keyword ka use hota hai.
+- aur ye tab tak he hoti hai jab tak aapka function call ya excute hota hai, jab excution khatam to ye bhi khatam.
+- jab bhi aap koi reference data type loge aur usse return karoge tab aapko memory keyword ka use karna padega.
+- in english :- whenever you are using a reference data type it cab be array,struct,mapping you need to use memory keyword everytime whenever you want to return the refernce data type.
+- in english :- lifetime is limited to an external function call
+	- ii) Storage :- 
+- storage basically wo location hoti hai jaha aapke state variables store hote hai
+- in english :- the location where the state variables are stored, where the lifetime is limited to the lifetime of a contract.
+	- iii) Calldata :-
+- special data location that contains the function argument.
+- ye sirf aur sif argument me he use karte hai
+
+Array (Fixed Size) :-
+- Array means list of data types jo bhi data types ka banaya hai aur usse aap store kar rahe hai.
+- agar muhje array 5 number of elements tak banana hai of uint numbers so me ase kar sakta hu here is the syntax :- uint[number_of_elements] public variable_name;
+- kyuki hamne ese koi values se initialised nahi kiya hai to array ke har index me data type ki default value store hogi, in this case uint hai to 0 (zero) value store hogi.
+- lekin agar mujhe values initilased kar ke deni hai to me kese karuna, here it is the syntax :- uint[number_of_elements] public variable_name =[values_wants_to_store];
+- and if agar muhje element store karne hai toal 5 aur mene values sirf 3 ki he di to baki remaining 2 values ki default value data type par depend karegi, in my this case default value for last 2 value is 0 (zero).
+- the code part is written in FixedSizeArray.sol file.
+- there is FixedSizeArrayAssignment.sol file ,and there is assignment based on the fixed array learning.
+- fixed size ka advantage ye hai ki iska cost kamm lagta hai, compare to dyanmic size array.
+(out of context but imp) :- there is a package named "eth-gas-reporter" to calculate the gas in your smart contract code.
+
+Array (Dyanmic Size) :-
+- in dyanamic size array ham koi lenght ya value limit set nahi karte hai, array ko jitna chaiye wo utna grow kar sakta hai.
+- in dyanmic size array me basically koi limit nahi hoti hai to jyda consumption hone ki wahaj se jyda gas cost lagti hai compare to fixed size array.
+- all the concepts are explain in DyanmicSizeArray.sol file
+
+Memory V/S Calldata :-
+- agar ham array ko function me pass kar rahe hai to hame batana padega ki array kaha store ho rahi ha to array memory me store ho rahi hai.
+- and agar hame koi bhi refernce data type ko returns me likhna hai return karana hai to waha pe bhi ham memory keyword ka use karenge
+- all the code and concept written in MemoryVsCalldata.sol file.
+- agar ham apne reference data type me koi changes nahi kar rahe hai jo ki function me pass kiya ja raha hai to ham calldata ka use karnege.
+- and agar ham apne function ke argument me koi changes karne wale hai to ham memory keyword use karenge.
+- ham memory keyword ka use dono he case me kar sakte hai, lekin jaha par reference data me changes nahi kar rahe hai to waha par calldata likhne se , ham apni gas fees ya gas cost ko kam kar sakte hai.
+- returns () ke andar ham kabhi bhi calldata keyword ka use nahi karte.
+- and agar ham kisi bhi reference data type ko ham returns() kara rahe hai tab hame memory keyword likhna padega.
+
+Difference between Storage and Memory Keyword :-
+- memory keyword ka use kar ke ham ek copy of the source data bana lete hai, and agar hame copy data me changes kar sakne hai to wo sirf copy data me he hoga na ki original data me koi changes kare.
+- and for storage keyword ke use karne se hamare data ka koi copy nahi banata hai , basically bass wo usse original data source ko point karta hai , it acts as a pointer.
+- and agar ham storage level me let's say hame array me koi element find out karna hai, searching karni hai to agar ham ye storage level par karte hai to hame bhot jyda paisa dena padega.
+- written all the notes and codes in file MemoryVsStorageKeyword.sol for better explanation.
+
+- Video 2:- 
+String :- 
+- string is a datatype to store strings.
+- declaration syntax of string with example :-
+    string public str = "hi";
+- there are different strings methods present in solidity, like
+	i) compare string 
+	ii) concatenate string
+- but generally there is not so much use of them in solidity because we are creating smart contracts for financial terms, storage purpose.
+- in require statement ke badd jo ham string write karte hai , agar wo string ki length aur jyda badi rakhte hai to hame utni he jyda gas cost deni padti hai.
+- string ka bhi use bhot he wisely use karna hota hai.
+- string tabhi use karo jab ham koi asi string likhenge ki jo aage jake grow kar ya dynamic hai, otherwise bytes is the best option kyui ye fixed hoti hai.
+- we can do typecast like ham string ko bytes aur bytes ko string me convert kar sakte hai.
+- written all the notes and codes in file string.sol for better explanation.
+- written all the string method notes and codes in file stringCompare.sol and stringConcanate.sol for better understanding.
+
+Struct :- 
+- this is the very very very very important data type.
+- struct is a complex data type. A complex data type is usually a composite of other exisiting data types.
+- how to create a struct / syntax / example :-
+	struct Student {
+		string name;
+		uint roll;
+		bool pass;
+	}
+- syntax to write struct :-
+	struct_type public var_name 
+	- public is optional to write.
+- example (mujhe agar iska data type banana hai to):-
+	Student public s1;
+- so suppose i want to acess name whichis present in Student and student is saved or initilaised with s1 , so i acess or call the name like this :- s1.name 
+and want to acess other is same :- s1.roll , s1.pass
+- and s1 ki initially value uske andar jo bhi data type hai unke initially value ya phir default value me set ho jati hai.
+- in string name me default value :- ""
+- in uint roll me default value :- 0
+- in bool pass me default value :- false
+- written all the notes and codes in file struct.sol for better understanding.
+
+Array of Structs :-
+- ye arraay of structs basically structs he hai lekin jaha structs me ham sirf ek data values ko store kara sakte hai ,
+- wahi array ko structs me struct ko declare karne ke name ke aage array ke brackets aur uske andar size mention kar ke kamm ho jayega.
+- ye helpful hai jaha hame multiple data store karana hai like student records, records in structs etc.
+- syntax with code :-
+	Student[4] public s;
+	s ka type hai Student , aur Student namm se ek struct create kiya gaya hai aur wo ek array hai, to s ka datatype hua Student aur Student array hai of Size 4.
+- written all the notes and codes in file ArrayofStruct.sol for better understanding.
+- and jo reamining data slots present hai array me agar unke index me koi value insert nahi hoti hai to struct ke anadar ke data ke data type ki by default value par wo set ho jatti hai.
+- given the assignment task the assignment and solution is present in StructAssignment.sol file.
+
+Video 3 :-
+mapping :- 
+- mapping is just like an array , it is not an array just like an array.
+- it is also important in solditiy.
+- in array me bascially ham koi bhi type ka data insert kar sakte the lekin jo index ha array ka that is starting from 0 like this :- 0,1,2,3 etc
+- array index hamesha uint type ka he hota hai 
+- but in case of mapping , mapping me ham key ko in simple words like index, other than uint bhi rakh sakte hai.
+- and ham value ka bhi data type change kar sakte hai in mapping , so key ka bhi data type change ho sakta hai and value ka bhi data type change ho sakta hai in case of mapping
+- but in case of array ham index yani ki key ke data type ko change nahi kar sakte hai.
+- mapping jo hai wo array se fast hoti hai , kyuki ye hashing ke concept pe based hai.
+- and mapping me continous memory allocation nhi hota hai , jabki array me continous memory allocation hota hai.
+- ham mapping ko function ke andar use kar sakte hai but declare nahi kar sakte.
+- all the code and explanation part is written in mapping.sol file for better understanding.
+- this topics need to practise :-
+	- mapping with struct
+	- mapping with array
+
+Nested Mapping :-
+- nested mapping ka concept tab use hota hai generally ek e.g :- jab aapko kisi ko ownership deni hai ya kisi se koi ownership leni hai.
+- ye kuch es tarah se declare hoti hai , syntax with code example :-
+	mapping(address=>mapping(address=>bool)) private check;
+- all the code and explanation part is written in NestedMapping.sol file for better understanding.
+- it is just like a 2D array.
+
+Video 4 :-
+various global variables :- 
+- to bhot sare ase variables se jo solidity hame provide karti hai, jisse hamara kamm as a solidity developer easy ho jata hai.
+- jase ki for examples :- 
+	i) block.timestamp :- ye batata hai ki kiss particular time aapka block 	create hua hai, in seconds because ye unix epoch me hai. and it is always return in uint.
+	- in english :- current block timestamp as seconds since uinx epoch.
+	- this concept code is present in file GlobalVariables.sol for better understanding.
+	- eska use hai jaha hame restrict karna hota hai kisi cheez ko for a particular time to ham eske through kar sakte hai.
+	ii) msg.sender :- ye batata hai hame caller address that is kisne function ko call kiya hai uska address hame message.sender batata hai, aur ye address batata hai esliye eska returns type bhi address.
+		- eska use :- ham esse ye pata kar sakte hai kis person ne function ko call karya hai and kya uske pass rights hai es function ko call karne ki.
+	iii) msg.value :- ye batata hai ki user ne kitne eth send kiye hai in terms of transactions, ye batata hai ki kitne paise hai
+- generally ham koi bhi transaction karte hai hamare smart contract me to wo "wei" me he hote hai, to agar ham "eth" bhi bheje to wo at the end convert ho jata hai "wei" ke terms me.
+- and in 1 eth me 10^18 wei hote hai.
+- and there is Assignment to understand the global variables concept file name where assignment is solved is GlobalvariableAssignment.sol file 
+- check 40:10 for the second approach to solve the assignment using mapping.
+- and this approach is present in GlobalvariableAssignmentSolvedByMapping.sol file for better understanding go to the code.
+
+Payable :- 
+- payable me basically bass "payable" keyword function ke syntax me add kar dene se wo function ham contract me contract ke liye ethers collect karne ka kamm kargea.
+- so basically jab bhi koi user function ko call kargea jisme payable keyword se attach to wo function user ke address se ether deduct kar ke contract me store kar dega ya dal dega.
+- and ham ye kisi user ke address me agar send karne hai to wo bhi kar skate hai
+- and ham payable keyword ka use function me tabhi kar sakte hai jab wo function ko payable keyword se declare kiya ho , otherwise ham function ke andar payable keyword ka use nahi kar sakte.
+- all the codes and concepts written in file Payable.sol
+- to hota ye hai ki ek sender ethers ko send karta hai reciver ke pass jane ke liye lekin wo reciver ke pass jane ke pahele smart contract me jata hai then after that reciver ke pass jata hai.
+- and ye process bhot fast hota hai.
+- aur ye terminal me compiled ya remix ide me dekh sakte hai.
+- smart contract ke pass jate hai ethers esliye hame functions ko bhi payable banana padta hai, function ke andar payable use karne ke liye.
+
+Completed Notes.
