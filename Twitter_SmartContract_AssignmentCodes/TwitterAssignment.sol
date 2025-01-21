@@ -36,8 +36,8 @@ contract TweeterContract {
     // created a nested mapping for the transfering of ownership of accounts for that it is
     mapping(address => mapping(address => bool)) public operators;
 
-    // created a mapping to store the followers, that which address are following the address, and that is dyanmic array of address
-    mapping(address => address[]) public followers;
+    // created a mapping to store the following, that which address are following the addressess, and that is dyanmic array of address
+    mapping(address => address[]) public following;
 
     // created two more variables
     uint nextId;
@@ -45,7 +45,7 @@ contract TweeterContract {
 
     // created a function for creating and storing tweets
     // pass the author address and the tweet content to the function
-    function tweet(address _author, string memory _content) public {
+    function _tweet(address _author, string memory _content) internal {
         // so we are accessing and storing tweets with nextid
         // then we are pushing or passing the all data in Tweet Structs, the nextId is like tweet id, the _author , _content
         // and for timestamp we are using block.timestamp for getting and storing the current time , this stores in unix timestamp
@@ -60,7 +60,7 @@ contract TweeterContract {
         address _from,
         address _to,
         string memory _content
-    ) public {
+    ) internal {
         // to basically ham conversations me from ke address ko he point kar ke work kar rahe hai,
         // and kyuki ye dynamic array hai to yaha pe push() method ka use hoga
         // and ess push me ham Message array me push karenge, push karte wakt jase struct define hai wase he push karna hoga
@@ -72,4 +72,66 @@ contract TweeterContract {
         // so that new message will get store on new nextMessageId
         nextMessageId++;
     }
+
+    // function to call the upper functionalities that are internal, which means we only use them only within smart contract
+
+    // function to call the _tweet function, in different ways
+    // first is by using msg.sender in place of address _from
+
+    // call by owner
+    function tweet(string memory _content) public {
+        _tweet(msg.sender, _content);
+    }
+
+    //call by owner ne jisse account ka acess diya hoga
+    function tweet(address _from, string memory _content) public {
+        _tweet(_from, _content);
+    }
+
+    // function to call the _sendMessage function, in different ways
+    // first is by using msg.sender in place of address _from
+
+    // call by owner
+    function sendMessage(address _to, string memory _content) public {
+        _sendMessage(msg.sender, _to, _content);
+    }
+
+    //call by owner ne jisse account ka acess diya hoga
+    function sendMessage(
+        address _from,
+        address _to,
+        string memory _content
+    ) public {
+        _sendMessage(_from, _to, _content);
+    }
+
+    // function to follow the address 
+
+    // call by the owner
+    function follow(address _followed) public {
+        // in following mapping , identify by the owner i.e msg.sender then push the _followed address to the array of address i.e following
+        following[msg.sender].push(_followed);
+    }
+
+    // //call by owner ne jisse account ka acess diya hoga
+    // function follow(address _from ,address _followed) public {
+    //     // in following mapping , identify by the owner i.e _from then push the _followed address to the array of address i.e following
+    //     following[_from].push(_followed);
+    // }
+
+    // function to allow the acess from owner to the operator
+    function acess(address _operator) public {
+        // operators ke mapping me owner yani msg.sender ka address , kis ko allow kiya hai uska address yani _operator and allow hai to true
+        operators[msg.sender][_operator] = true;
+    }
+
+    // function to disallow the acess from owner to the operator
+    function disallow(address _operator) public {
+        // operators ke mapping me owner yani msg.sender ka address , kis ko disallow kiya hai uska address yani _operator and disallow hai to false
+        operators[msg.sender][_operator] = false;
+    }
 }
+// important points from interview point :-
+// solbam token ye asa token ke hai jo ek barr wallet pe store ho gaya to wo hamesha ke liye rahega.
+// for voting boba token's ka use hota hai
+// company name is Dapex
