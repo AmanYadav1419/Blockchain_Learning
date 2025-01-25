@@ -105,7 +105,7 @@ contract TweeterContract {
         _sendMessage(_from, _to, _content);
     }
 
-    // function to follow the address 
+    // function to follow the address
 
     // call by the owner
     function follow(address _followed) public {
@@ -129,6 +129,43 @@ contract TweeterContract {
     function disallow(address _operator) public {
         // operators ke mapping me owner yani msg.sender ka address , kis ko disallow kiya hai uska address yani _operator and disallow hai to false
         operators[msg.sender][_operator] = false;
+    }
+
+    // function to get latest tweets
+    // it accepts the count, how many tweets we want in latest
+    function getLatestTweets(uint count) public returns (Tweet[] memory) {
+        // condition checking, if false throw the Count is Not Proper.
+        require(count > 0 && count <= nextId, "Count is Not Proper");
+        // and condition true hone par below code excute hoga
+        Tweet[] memory _tweets = new Tweet[](count);
+        // Tweet array create ho raha hai , jo ki filhal empty hai then,
+        // array ki length ye jitna count hai utni hai
+
+        // variable for to use in looping all the latest tweets
+        uint j;
+
+        for (uint i = nextId - count; i < nextId; nextId++) {
+            // suppose count is 5 and the nextId value is 7
+            // so 7 - 5 = 2, so it will start from 2,3,4,5,6 upto 6
+            Tweet storage _structure = tweets[i];
+
+            // then store the structure or push them to Tweet struct
+            _tweets[j] = Tweet(
+                _structure.id,
+                _structure.author,
+                _structure.content,
+                _structure.createdAt
+            );
+
+            // then increament the value of j
+            j = j + 1;
+        }
+        // then return the _tweets
+        return _tweets;
+
+        // yaha par jugad ye hua hai ki kyuki ham mapping ko function ke andar return nahi kara sakte hai i.e tweets
+        // ye mapping hai to hame usse mapping ke data ko jabran array me push karana pada
+        // to ese jugad se ham array me data pass kar ke mapping ke data ko return kara rahe hai.
     }
 }
 // important points from interview point :-
