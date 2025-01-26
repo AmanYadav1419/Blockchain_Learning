@@ -133,7 +133,7 @@ contract TweeterContract {
 
     // function to get latest tweets
     // it accepts the count, how many tweets we want in latest
-    function getLatestTweets(uint count) public returns (Tweet[] memory) {
+    function getLatestTweets(uint count) public view returns (Tweet[] memory) {
         // condition checking, if false throw the Count is Not Proper.
         require(count > 0 && count <= nextId, "Count is Not Proper");
         // and condition true hone par below code excute hoga
@@ -144,7 +144,7 @@ contract TweeterContract {
         // variable for to use in looping all the latest tweets
         uint j;
 
-        for (uint i = nextId - count; i < nextId; nextId++) {
+        for (uint i = nextId - count; i < nextId; i++) {
             // suppose count is 5 and the nextId value is 7
             // so 7 - 5 = 2, so it will start from 2,3,4,5,6 upto 6
             Tweet storage _structure = tweets[i];
