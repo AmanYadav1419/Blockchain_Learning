@@ -50,6 +50,9 @@ contract TweeterContract {
         // then we are pushing or passing the all data in Tweet Structs, the nextId is like tweet id, the _author , _content
         // and for timestamp we are using block.timestamp for getting and storing the current time , this stores in unix timestamp
         tweets[nextId] = Tweet(nextId, _author, _content, block.timestamp);
+        // and then ham log jo bhi tweets ki id hai unhe bhi store kara rahe hai tweetsof ke mapping ke array me
+        // to ek user ke jitne bhi tweets ki id thi wo sab hamne tweetsOf ke mapping me store kara li.
+        tweetsOf[_author].push(nextId); 
         // after that storing tweet increment the nextId by 1, so that no conflicts will occur
         // so that new tweet will get store on new nextId
         nextId = nextId + 1;
