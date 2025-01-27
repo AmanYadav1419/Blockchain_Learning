@@ -27,7 +27,7 @@ contract TweeterContract {
     mapping(uint => Tweet) public tweets;
 
     // created mapping to store the tweets id , and that is dynamic array
-    mapping(address => uint[]) public tweetsOf;
+    mapping(address => uint[]) public tweetsOf; //0xabc - 2,10,15,19,20,22
 
     // created mapping to store the messages , and that is dyanmic array, value part is Message Struct
     // to basically ek address jitne chaiye utne message send kar sakta hai esliye Message[] dyanmic array hai.
@@ -52,7 +52,7 @@ contract TweeterContract {
         tweets[nextId] = Tweet(nextId, _author, _content, block.timestamp);
         // and then ham log jo bhi tweets ki id hai unhe bhi store kara rahe hai tweetsof ke mapping ke array me
         // to ek user ke jitne bhi tweets ki id thi wo sab hamne tweetsOf ke mapping me store kara li.
-        tweetsOf[_author].push(nextId); 
+        tweetsOf[_author].push(nextId);
         // after that storing tweet increment the nextId by 1, so that no conflicts will occur
         // so that new tweet will get store on new nextId
         nextId = nextId + 1;
@@ -170,8 +170,60 @@ contract TweeterContract {
         // ye mapping hai to hame usse mapping ke data ko jabran array me push karana pada
         // to ese jugad se ham array me data pass kar ke mapping ke data ko return kara rahe hai.
     }
+
+    // function to get the latest tweets from the specific user
+    // in function we recive address of user, then count how many tweets we want
+    function getLatestTweetsofUser(
+        address _user,
+        uint count
+    ) public view returns (Tweet[] memory) {
+        // Tweet array create ho raha hai , jo ki filhal empty hai then,
+        // array ki length hai jitna count hai utni hai
+        Tweet[] memory _tweets = new Tweet[](count);
+        // variable for to use in looping all the latest tweets
+
+        // tweetsOf[_user] is having all the id's of the user
+        uint[] memory ids = tweetsOf[_user]; //ids is an array
+        
+        // condition checking, if false throw the Count is Not Proper.
+        require(count > 0 && count <= ids.length, "Count is Not Defined");
+        
+        uint j;
+
+        // i = ids.length means user ke jitne bhi tweets honge utne tweets sari fetch hongi , then minus count
+        // taki minus karne ke badd hame latest tweets mil sake
+        for (
+            uint i = ids.length - count;
+            i < ids.length;
+            i++
+        ) {
+            // explanantion for using tweets[ids[i]]  :- 
+            // so 5 - 3 = 2, so it will start from 2 to 5, 5 is the tweet's and 3 is the count we gave
+            // to basically i ki value start hogi 2 se upto 5 tak,
+            // jase he i ki value hogi 2 wase he ids of tweets pe jayenge aur waha jo bhi data id hogi wo isme aa jayegi
+            // samjho i = 2, to id[2] ki value aayegi 15 i.e id[15] ki value ham fetch kar rahe hai
+            // and wahi value ko ham kaha dal rahe hamare structre pointer pe point kar rahe hai, then jo bhi data hai 
+            // usse fetch kar kar ke ham j me jo ki hamari memory array hai usme dal rahe hai
+            Tweet storage _structure = tweets[ids[i]];
+
+            // then store the structure or push them to Tweet struct
+            _tweets[j] = Tweet(
+                _structure.id,
+                _structure.author,
+                _structure.content,
+                _structure.createdAt
+            );
+
+            // then increament the value of j
+            j = j + 1;
+        }
+        // then return the _tweets
+        return _tweets;
+    }
 }
 // important points from interview point :-
 // solbam token ye asa token ke hai jo ek barr wallet pe store ho gaya to wo hamesha ke liye rahega.
 // for voting boba token's ka use hota hai
 // company name is Dapex
+
+// there is a task which is assign in video 05 - Twitter - Part D , from video 26:50 
