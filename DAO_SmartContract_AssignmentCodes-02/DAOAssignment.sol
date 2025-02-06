@@ -104,4 +104,33 @@ contract DAOorganization {
         // and because we got investor , so we push the investor to the dyanmic array
         inverstorsList.push(msg.sender);
     }
+
+    // function reedem share that means koi bhi investor apne shares ke amount ko fetch kar sakta hai
+    // ye sirf aur sirf investor he call sakta hai, kyuki jisne invest kiya wahi reedem kar sakta hai
+    function reedemShare(uint amount) public onlyInvestor(){
+        // sabse pahele ham check kar rahe hai investor ke num of shares ka amount input amount se jyda hai ya nahi
+        // greater hai then excute karo otherwise error throw karo
+        require(numOfshares[msg.sender] > amount, "You Don't Have Enough Shares") 
+        // then agar hamre funds jo use ho gaye hai usse bhi jyda amount ki requirement aa rahi hai, then
+        // agar funds avaiable hai to excute hogi next line, else throw error
+        require(availableFunds > amount, "Not Enough Funds");
+
+        // then we deduct the the amount from the msg.sender
+        numOfshares[msg.sender] -= amount;
+
+        // then ham check karenge ki kya investor ne apne sare shares nikal liye hai kya
+        if(numOfshares[msg.sender]==0){
+            // then wo investor he nahi rahega, agar ussne sare shares nikal liye hai to
+            inverstorsList[msg.sender] = false;
+        }
+
+        // then ham avaialble funds se amount ko minus kar lenge taki avaiable funds status update
+        availableFunds -= amount;
+
+        // then ham amount ko msg.sender ke address me transfer kar denge 
+        // lekin transfer method ham tabhi use kar sakte hai jab wo address payable ho
+        // to iske liye ham explict type casting karenge
+        payable(msg.sender).transfer(amount); //transferring of ether
+        
+    }
 }
