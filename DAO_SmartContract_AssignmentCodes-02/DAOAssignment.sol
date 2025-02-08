@@ -133,4 +133,35 @@ contract DAOorganization {
         payable(msg.sender).transfer(amount); //transferring of ether
         
     }
+
+    // investor's address share's will get transfered "to" address
+    function transferShares(uint amount, address to) public onlyInvestor(){
+        // sabse pahele ham check kar rahe hai investor ke num of shares ka amount input amount se jyda hai ya nahi
+        // greater hai then excute karo otherwise error throw karo
+        require(numOfshares[msg.sender] >= amount, "You Don't Have Enough Shares");
+       
+        // then agar hamre funds jo use ho gaye hai usse bhi jyda amount ki requirement aa rahi hai, then
+        // agar funds avaiable hai to excute hogi next line, else throw error
+        require(availableFunds > amount, "Not Enough Funds");
+
+        // then we deduct the the amount from the msg.sender
+        numOfshares[msg.sender] -= amount;
+
+        // then ham check karenge ki kya investor ne apne sare shares nikal liye hai kya
+        if(numOfshares[msg.sender]==0){
+            // then wo investor he nahi rahega, agar ussne sare shares nikal liye hai to
+            inverstorsList[msg.sender] = false;
+        }
+
+        // then ham avaialble funds se amount ko minus kar lenge taki avaiable funds status update ho jaye
+        availableFunds -= amount;
+
+        // aur then wahi amount ko ham "to" address me update kar deneg
+        numOfshares[to]+= amount;
+
+        // ab "to" bhi ek investor ban gaya hai kyuki uske pass kuch na kuch shares aa he gaye
+        isInvestor[to] = true;
+        // then ham "to" investor ko bhi investorList me append kar denege
+        inverstorsList.push(to);
+    }
 }
