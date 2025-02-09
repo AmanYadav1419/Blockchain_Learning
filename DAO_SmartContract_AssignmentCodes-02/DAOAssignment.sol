@@ -164,4 +164,56 @@ contract DAOorganization {
         // then ham "to" investor ko bhi investorList me append kar denege
         inverstorsList.push(to);
     }
+
+    // function to create proposals i.e is only call by manager
+    function createProposals(string calldata description, uint amount, address payable receipint) public onlyManager() {
+        require(availableFunds >= amount, "Not Enough Funds");
+
+    // in proposals mapping we store the Proposal Struct data 
+    // so that it will create a proposal
+
+    // 0 for initial vote count, and for end time we can do block.timestamp + voteTime so it will give us end time
+    // and as this is created a proposals so at first stage isExcuted is false
+        proposals[nextProposalId] = Proposal(nextProposalId,
+        description,
+        amount,
+        receipint,
+        0, 
+        block.timestamp+voteTime,
+        false
+        );
+
+        // then next proposal id ko increament kar diya taki next proposal jo ho wo unique ho
+        nextProposalId++;
+    }
+
+    // function for creating vote proposal , jiske through ham vote kar sakte hai
+    // and iss function ko sirf aur sirf investor he call kara sakta hai, yani ki only investor can vote
+    function voteProposal(uint porposalId) public onlyInvestor(){
+        // we are pointing to the proposal with the help of proposalId and storing it in variable proposal with storage keyword.
+        // this improve the code readability
+        Proposal storage proposal = proposals[porposalId];
+
+        // checking that if investor is already voted or not , if voted then throw the error
+        // if not excute next line
+        // in this isVoted is nested mapping , checking that msg.sender that who call's the function with the proposalId
+        // if investor is already voted then throw the error, else excute the next line of code  
+        require(isVoted[msg.sender][porposalId] == false, "You have already voted for this proposal");
+
+        // it will check that the end time for voting a proposal is greater than the current voting time i.e block.timestamp
+        // if not then throw the error, if voting is present then excute next line  
+        require(proposal.end > block.timestamp, "Voting Time Ended");
+
+        // then we check that it is already excuted or not, if it is excuted then throw the error,
+        // otherwise excute the next line of code
+        require(proposal.isExcuted == false, "It is already Excuted");
+
+        // then uper ke sare conditions check hone ke badd he below line of code excute hoga
+        // voting ko true kar do uss particular proposal ke liye
+        isVoted[msg.sender][porposalId] = true;
+
+        // voter ke pass jitne number of shares hai utne he unke votes and authority hogi.
+        // to jitne shares the wahi ek tarah se unke authority or votes ho gaye for proposal ke vote ke liye
+        proposal.votes += numOfshares[msg.sender]; //proposal.votes = proposal.votes + numOfshares[msg.sender]
+    }
 }
