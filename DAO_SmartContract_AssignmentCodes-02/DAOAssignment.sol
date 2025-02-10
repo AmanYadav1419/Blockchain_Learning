@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.7.0 <0.9.0;
+pragma experimental ABIEncoderV2;
 
 contract DAOorganization {
     // proposal struct to create complex data type
@@ -110,7 +111,7 @@ contract DAOorganization {
     function reedemShare(uint amount) public onlyInvestor(){
         // sabse pahele ham check kar rahe hai investor ke num of shares ka amount input amount se jyda hai ya nahi
         // greater hai then excute karo otherwise error throw karo
-        require(numOfshares[msg.sender] > amount, "You Don't Have Enough Shares") 
+        require(numOfshares[msg.sender] > amount, "You Don't Have Enough Shares");
         // then agar hamre funds jo use ho gaye hai usse bhi jyda amount ki requirement aa rahi hai, then
         // agar funds avaiable hai to excute hogi next line, else throw error
         require(availableFunds > amount, "Not Enough Funds");
@@ -121,7 +122,7 @@ contract DAOorganization {
         // then ham check karenge ki kya investor ne apne sare shares nikal liye hai kya
         if(numOfshares[msg.sender]==0){
             // then wo investor he nahi rahega, agar ussne sare shares nikal liye hai to
-            inverstorsList[msg.sender] = false;
+            isInvestor[msg.sender] = false;
         }
 
         // then ham avaialble funds se amount ko minus kar lenge taki avaiable funds status update
@@ -150,7 +151,7 @@ contract DAOorganization {
         // then ham check karenge ki kya investor ne apne sare shares nikal liye hai kya
         if(numOfshares[msg.sender]==0){
             // then wo investor he nahi rahega, agar ussne sare shares nikal liye hai to
-            inverstorsList[msg.sender] = false;
+            isInvestor[msg.sender] = false;
         }
 
         // then ham avaialble funds se amount ko minus kar lenge taki avaiable funds status update ho jaye
@@ -222,7 +223,7 @@ contract DAOorganization {
     function excuteProposal(uint proposalId) public onlyManager(){
         // we are pointing to the proposal with the help of proposalId and storing it in variable proposal with storage keyword.
         // this improve the code readability
-        Proposal storage proposal = proposals[porposalId];
+        Proposal storage proposal = proposals[proposalId];
 
         // ab ham check karnege majority of votes proposal ko hai ya nahi,  with compare to quorum that is minimum number of votes to excute the proposal
         // agar hai to he next line excute hogi, otherwise throw the error
