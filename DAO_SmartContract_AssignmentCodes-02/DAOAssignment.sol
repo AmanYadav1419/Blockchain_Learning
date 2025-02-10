@@ -234,13 +234,32 @@ contract DAOorganization {
         // then make the isExcuted true
         proposal.isExcuted = true;
 
+        // then dedcut the proposal.amount from availableFunds
+        availableFunds -= proposal.amount;
+
         // after that call the function _transfer to transfer the amount and to whom want to transfer
         // this function we will create outer side of this function , to maintain the modularity of the contract
         _transfer(proposal.amount, proposal.receipint);
     }
 
     // this is function to transfer money/ethers, after the excution of certain proposal
-    function _transfer(uint amount, address payable receipint) public{
+    function _transfer(uint amount, address payable receipint) private{
         receipint.transfer(amount);
     }
+
+    // function to return all the Proposal List which are present in DAO
+    function ProposalList() public view returns(Proposal[] memory) {
+        // below line will create a Proposal array , and it is empty array of length nextProposalId - 1
+        Proposal[] memory arr = new Proposal[](nextProposalId - 1); //empty array of length = nextProposalId - 1 
+
+        // created a for loop, to iterate over through the proposalId's mapping
+        for(uint i = 0; i<nextProposalId; i++){
+            // and then transfering the mapping values from proposals to the array
+            // because we can't return the mapping values in the function, that's why we are transfering mapping values to array
+            arr[i] = proposals[i]; 
+        }
+        // then return the arr
+        // it will return all the proposal which are present in proposals mapping
+        return arr;
+    }    
 }
