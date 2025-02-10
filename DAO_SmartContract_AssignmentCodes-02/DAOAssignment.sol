@@ -27,7 +27,7 @@ contract DAOorganization {
     mapping(address => mapping(uint => bool)) public isVoted;
 
     // nested mapping for checking withdrawal staus
-    mapping(address => mapping(address => bool)) public withdrawlStatus;
+    // mapping(address => mapping(address => bool)) public withdrawlStatus;
 
     // created a dynamic array of address for storing investorsList
     address[] public inverstorsList;
@@ -215,5 +215,32 @@ contract DAOorganization {
         // voter ke pass jitne number of shares hai utne he unke votes and authority hogi.
         // to jitne shares the wahi ek tarah se unke authority or votes ho gaye for proposal ke vote ke liye
         proposal.votes += numOfshares[msg.sender]; //proposal.votes = proposal.votes + numOfshares[msg.sender]
+    }
+
+    // function for excuting the proposal
+    // and iss function ko sirf aur sirf manager he call kara sakta hai
+    function excuteProposal(uint proposalId) public onlyManager(){
+        // we are pointing to the proposal with the help of proposalId and storing it in variable proposal with storage keyword.
+        // this improve the code readability
+        Proposal storage proposal = proposals[porposalId];
+
+        // ab ham check karnege majority of votes proposal ko hai ya nahi,  with compare to quorum that is minimum number of votes to excute the proposal
+        // agar hai to he next line excute hogi, otherwise throw the error
+        // like understand this by example :-
+        // votes = 50, totalShares = 100, percentage = (50/100)*100 = 50%
+        // and quorum suppose is = 51% , so this will not excute , as majority is not with the proposal
+        require(((proposal.votes * 100) / totalShares) >= quorum, "Majority does not support");
+
+        // then make the isExcuted true
+        proposal.isExcuted = true;
+
+        // after that call the function _transfer to transfer the amount and to whom want to transfer
+        // this function we will create outer side of this function , to maintain the modularity of the contract
+        _transfer(proposal.amount, proposal.receipint);
+    }
+
+    // this is function to transfer money/ethers, after the excution of certain proposal
+    function _transfer(uint amount, address payable receipint) public{
+        receipint.transfer(amount);
     }
 }
