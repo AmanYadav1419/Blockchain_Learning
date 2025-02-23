@@ -117,7 +117,24 @@ contract Vote {
     }
 
     // function to return  all the candidates list.
-    function candidateList() public view returns (Candidate[] memory) {}
+    function candidateList() public view returns (Candidate[] memory) {
+        // as we can't return the mapping inside the function , so we need to store the mapping to array
+        // and then we can simply return the array i.e copy of mapping
+        // upto the size of nextCandidateId but suppose we have candidates raju and priti, so size should be 2 not 3, that's why 
+        // there is nextCandidateId - 1
+        Candidate[] memory candidateArr = new Candidate[](nextCandidateId - 1);
+
+        // now create the loop to iterate and store the mapping to array
+        for (uint256 i = 1; i < nextCandidateId; i++) {
+            // as array indexing start from 0, so that's why there is i - 1, for array only
+            // and as the candidateDetails this is mapping starting from 1, that's why
+            candidateArr[i - 1] = candidateDetails[i]; // transfering data from mapping to array. 
+        }
+
+        // after loop excution return the array
+        return candidateArr;
+
+    }
 
     // function for voter registering.
     function voterRegister(
