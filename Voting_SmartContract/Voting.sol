@@ -107,7 +107,7 @@ contract Vote {
         // we run the loop to check all the candidates that are present 
         for(uint candidateId = 1; candidateId < nextCandidateId; candidateId++){
             // then we check if the canidate is present or not 
-            // if present then throw the error
+            // if present then throw the false
             if(candidateDetails[candidateId].candidateAddress == _person){
                 return false;
             }
@@ -133,7 +133,7 @@ contract Vote {
 
         // after loop excution return the array
         return candidateArr;
-
+        
     }
 
     // function for voter registering.
@@ -141,7 +141,58 @@ contract Vote {
         string calldata _name,
         uint _age,
         string calldata _gender
-    ) external {}
+    ) external {
+        // fistly we check the age of voter, should be 18+ , if not then throw the error.
+        require(_age >= 18, "Age is Under 18");
+
+        // then we check that if voter is already registerd or not
+        require(voterVerification(msg.sender), "You had already registerd");
+
+        // if these conditions pass then store the voter data to Voter mapping
+        // so we are pushing the data in an very secured and efficient way i.e in objects
+        voterDetails[nextVoterId] = Voter({
+            name: _name,
+            age:_age,
+            gender:_gender,
+            Voterid:nextVoterId, // the voter address is on the nextVoter id, which is unique.
+            voterAddress:msg.sender // the voter who call's the function is directly store as the voter address. 
+        });
+
+        // then after storing the voter details , increment the nextVoterId
+        nextVoterId++;
+    }
+
+    // function for voter verification status check
+    function voterVerification(address _person) internal view returns(bool){
+        for(uint voterId = 1; voterId<nextVoterId;voterId++){
+            // then we check if the voterP is present or not 
+            // if present then throw the false
+            if(voterDetails[voterId].voterAddress == _person){
+                return false;
+            }
+        }
+
+        // after loop excutes return true, that means everything is alright
+        return true;
+    }
+
+    // function to return all the voters 
+    function voterList() public view returns(Voter[] memory){
+        // created a array to store the mapping details, as we can't return mapping inside the function
+        // created VoterArr upto the length of nextVoterId
+        Voter[] memory VoterArr = new Voter[](nextVoterId - 1);
+
+        // loop to the Voter mapping and store the data to the VoterArr
+        for(uint i = 1; i < nextVoterId; i++){
+            // as array indexing start from 0, so that's why there is i - 1, for array only
+            // and as the voterDetails this is mapping starting from 1, that's why
+            VoterArr[i - 1] = voterDetails[i]; // transfering data from mapping to array
+        }
+        // then return the array of voters
+        return VoterArr;
+
+    }
+
 
     // function for vote
     function vote(uint _voterId, uint _id) external {}
