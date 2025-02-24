@@ -200,15 +200,41 @@ contract Vote {
     // function for voteTime, which is only call by the election commisioner
     function voteTime(
         uint _startTime,
-        uint _endTime
-    ) external onlyCommisioner {}
+        uint duration // kitne ghante tak voting time ko shuru rakhna hai i.e duration 
+    ) external onlyCommisioner {
+        // as the time is from unix time that is running from 1 jan 1970
+        // suppose start time is like for eg. 4 PM
+        startTime = _startTime;
+        // the end time will be the addition of start time and duration
+        // and for end time the duration is 2 hours, so end time is 4 PM + 2 Hours = 6 PM;
+        // for 2 hours i.e 2*60*60 = 3600
+        endTime = _startTime + duration;
+
+    }
 
     // function for checking the vote status
-    function voteStatus() public view returns (string memory) {}
+    function voteStatus() public view returns (string memory) {
+        // agar hamara start time zero(0) hai to matalb voting shuru nahi hui hai
+        if(startTime == 0){
+            return "Voting is Not Started Yet!!";
+        }
+        // and agar start time zero(0) se not equal hai and endtime block.timestamp se bada hai that means voting shuru hai.
+        // and jo stopVoting hai wo true na ho to else if condition run ho jayega.
+         else if(startTime != 0 && endTime > block.timestamp || stopVoting != true){
+            return "Voting is in Progress!!";
+        }
+        // and agar uper ke conditions bhi nahi hai, that's means voting end ho gayi hai
+        else{
+            return "Voting has Ended!!"
+        }
+    }
 
     // function to declare the result of the election and which is only called by election commisioner
     function result() external onlyCommisioner {}
 
     // function to stop the voting in an emergency case which is only called by election commisioner
-    function emergency() onlyCommisioner {}
+    function emergency() onlyCommisioner {
+        // for stoping the voting in an emegerncy case , we can use stopVoting variable i.e bool value
+        stopVoting = true; 
+    }
 }
