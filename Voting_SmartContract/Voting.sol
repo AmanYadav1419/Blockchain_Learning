@@ -218,19 +218,35 @@ contract Vote {
         if(startTime == 0){
             return "Voting is Not Started Yet!!";
         }
-        // and agar start time zero(0) se not equal hai and endtime block.timestamp se bada hai that means voting shuru hai.
+        // and endtime block.timestamp se bada hai that means voting shuru hai.
         // and jo stopVoting hai wo true na ho to else if condition run ho jayega.
-         else if(startTime != 0 && endTime > block.timestamp || stopVoting != true){
+         else if(startTime != 0 && endTime > block.timestamp && stopVoting != true){
             return "Voting is in Progress!!";
         }
         // and agar uper ke conditions bhi nahi hai, that's means voting end ho gayi hai
         else{
-            return "Voting has Ended!!"
+            return "Voting has Ended!!";
         }
     }
 
+
     // function to declare the result of the election and which is only called by election commisioner
-    function result() external onlyCommisioner {}
+    function result() external onlyCommisioner {
+        // create a variable max to store the maximum number of votes
+        uint max = 0;
+
+        // created a loop to iterate through all the candidates votes
+        for(uint i = 0; i < nextCandidateId; i++){
+            // check condition
+            if(candidateDetails[i].votes > max){
+                // if vote count is greater than max , then store the votes to max 
+                max = candidateDetails[i].votes;
+
+                // and then store the candidate address to the winner variable, to declare the winner
+                winner = candidateDetails[i].candidateAddress;
+            }
+        }
+    }
 
     // function to stop the voting in an emergency case which is only called by election commisioner
     function emergency() onlyCommisioner {
