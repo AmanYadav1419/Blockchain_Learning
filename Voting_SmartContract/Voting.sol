@@ -50,6 +50,8 @@ contract Vote {
     // created modifiers so that only the authoroised person can call the function
     // first modifier for checking is voting over or not
     modifier isVotingOver() {
+        // check the condition for endTime and stopVoting
+        require(endTime > block.timestamp && stopVoting != true, "Voting is Over now!!")
         _;
     }
 
@@ -195,7 +197,34 @@ contract Vote {
 
 
     // function for vote
-    function vote(uint _voterId, uint _id) external {}
+    // this accepts two params _voterId and _candidateId <- to whom voter is voting to candiate.
+    // with that it check the isVotingOver modifier, if it returns false then the function will not excute 
+    function vote(uint _voterId, uint _candidateId) external isVotingOver() {
+        // this function should includes this topic as well
+        
+        // the first is check is that the voter is valid or not,
+        // if not then throw the error and revert back
+        require(voterDetails[_voterId].voterAddress == msg.sender, "You have not registered for Voting!!");
+
+        // check condition for candidateId is valid or not
+        require(_candidateId > 0 && _candidateId < 3, "Candidate Id is not Valid!!")
+
+        // vote should be allowed when voting is started
+        require(startTime != 0, "Voting has not Started Yet!!");
+
+        // voting should only happen when two candidates are registred
+        // nextCandidateId is currently 3 , as two candidates registerd , so the current id is 3.
+        require(nextCandidateId == 3,"not enough Candidates Registerd!!")
+        
+        // one vote one voter
+        require(voterDetails[_voterId].voteCandidateId == 0, "Voter has already Voted!!");
+
+        // then after each require statment passes , the voter can vote to the candidate
+        voterDetails[_voterId].voteCandidateId = _candidateId;
+
+        // after that increment the candidate votes by 1.
+        candidateDetails[_candidateId].votes++;
+    }
 
     // function for voteTime, which is only call by the election commisioner
     function voteTime(
@@ -254,3 +283,7 @@ contract Vote {
         stopVoting = true; 
     }
 }
+
+
+// server side :-
+// registration and voting date check at server side
