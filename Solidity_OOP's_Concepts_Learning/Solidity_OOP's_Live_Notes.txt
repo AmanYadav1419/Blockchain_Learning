@@ -1,0 +1,26 @@
+solidity oop live - 1 notes:-
+	content :- 
+		i) Contract and Objects
+		ii) Polymorphism
+		iii) Inheritance
+		iv) Library
+		v) Abstract Class
+		vi) Error and Revert
+		vii) Interface
+		viii) Event
+
+i) Contract and Objects :-
+- Solidity Contract are like a class in any other object-oriented programming language.
+- a class is a description of an object's property and behavior.
+- Object is a real world entity.
+- e.g 	Contract Book {
+		// code like different function's for book
+	}
+- so agar hame is contract ko acess karna hai , ya kisi dusre contract me acess karna hai to hame iska object banana padega.
+- Book obj = new Book();
+- to "obj" ke madat se ham contract ko acess kar payenge, ham contract ke andar ke function's ko bhi acess kar payenge with the help of "obj"
+- Note :- Constructor of a contract is called as soon as its contract is created.
+- agar ham ek constructor bana dete hai hamare contract me to tab dikkat nahi, lekin agar ham constructor nahi banate hai to solidity hamare liye ek constructor bana deti hai, jiska as such hamare uper koi impact nai hota.
+- ek smart contract me ek he constructor ho sakta hai.
+- this is understand much better with code and example in file "ContractObjects.sol" file.
+- video start from 30:40
