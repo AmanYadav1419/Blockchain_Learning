@@ -22,5 +22,5 @@ i) Contract and Objects :-
 - Note :- Constructor of a contract is called as soon as its contract is created.
 - agar ham ek constructor bana dete hai hamare contract me to tab dikkat nahi, lekin agar ham constructor nahi banate hai to solidity hamare liye ek constructor bana deti hai, jiska as such hamare uper koi impact nai hota.
 - ek smart contract me ek he constructor ho sakta hai.
-- this is understand much better with code and example in file "ContractObjects.sol" file.
-- video start from 30:40
+- this is understand much better with code and example in file "ContractObjects.sol" and "ContractObjectWithCalculatorExample.sol" file.
+- 
