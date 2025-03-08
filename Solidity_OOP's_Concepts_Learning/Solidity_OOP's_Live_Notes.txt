@@ -23,4 +23,10 @@ i) Contract and Objects :-
 - agar ham ek constructor bana dete hai hamare contract me to tab dikkat nahi, lekin agar ham constructor nahi banate hai to solidity hamare liye ek constructor bana deti hai, jiska as such hamare uper koi impact nai hota.
 - ek smart contract me ek he constructor ho sakta hai.
 - this is understand much better with code and example in file "ContractObjects.sol" and "ContractObjectWithCalculatorExample.sol" file.
-- 
+
+ii) Inheritance :-
+- Inheritance in Solidity is the procedure in which one contract inherits the attributes and methods of another contract.
+- all the code for understanding concept is written in file "Inheritance.sol" file 
+- inheritance me constructor functions bhi inherit hote hai.
+- aur uske sath state variables bhi inherit hote hai.
+- video start from 1:06:40
