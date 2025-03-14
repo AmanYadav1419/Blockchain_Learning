@@ -29,4 +29,13 @@ ii) Inheritance :-
 - all the code for understanding concept is written in file "Inheritance.sol" file 
 - inheritance me constructor functions bhi inherit hote hai.
 - aur uske sath state variables bhi inherit hote hai.
-- video start from 1:06:40
+
+import contract :-
+- for this i didn't write any code or make the changes in files and code, it is done virtually like for understanding , you can try yourself i will provide the clear explanation of import contract.
+- we can import the contract from different file as well, so like if we want to import a contract which is present in "Parent.sol" file to the file like "Child.sol" , so we can write -> import "./Parent.sol"; to our Child.sol file
+- the "./" means both the files are present in same directory.
+- advantage of import contract thing is :-
+	- if we had multiple contracts , then we can make the contracts more manageable.
+	- we can split the big file code to multiple code files , for the code reuse purpose
+	- improve the code maintainbilty and readability.
+	- we don't need to write export or something to the contract, it is implemented by it own.
