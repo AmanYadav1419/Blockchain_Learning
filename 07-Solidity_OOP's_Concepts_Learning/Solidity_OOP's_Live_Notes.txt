@@ -3,6 +3,7 @@ solidity oop live - 1 notes:-
 		i) Contract and Objects
 		ii) Polymorphism
 		iii) Inheritance
+		- a) import
 		iv) Library
 		v) Abstract Class
 		vi) Error and Revert
@@ -39,3 +40,12 @@ import contract :-
 	- we can split the big file code to multiple code files , for the code reuse purpose
 	- improve the code maintainbilty and readability.
 	- we don't need to write export or something to the contract, it is implemented by it own.
+
+Abstract Contracts :-
+- Abstract contracts are contracts that can have functions without its implementation.
+- To make a contract abstract you have to use "abstract" keyword.
+- Function without implementation must contain "virtual" keyword.
+- The abstract contract defines the structure of the contract and any derived contract inherited from it should provide an implementation for the incomplete functions. And that functions should contain "override" keyword.
+- And if the derived contract is also not implementing the incomplete functions then derived contract wil aslo be "marked as abstract".
+- Contract marked as abstract contract cannot be depolyed.
+- All the next explanation and code is present in Abstract.sol file.
