@@ -46,6 +46,23 @@ Abstract Contracts :-
 - To make a contract abstract you have to use "abstract" keyword.
 - Function without implementation must contain "virtual" keyword.
 - The abstract contract defines the structure of the contract and any derived contract inherited from it should provide an implementation for the incomplete functions. And that functions should contain "override" keyword.
-- And if the derived contract is also not implementing the incomplete functions then derived contract wil aslo be "marked as abstract".
+- And if the derived contract is also not implementing the incomplete functions then derived contract wil also be "marked as abstract".
 - Contract marked as abstract contract cannot be depolyed.
 - All the next explanation and code is present in Abstract.sol file.
+
+01-Solidity OOP LIVE Video complete.
+
+solidity oop live - 2 notes :-
+	
+Interface :-
+- interfaces are the more restricted form than abstract contract.
+- An interface is an agreement or a contract between itself and any contract that implements it.
+- Interface functions are implicitily "virtual", no need to write "virtual" keyword in function declaration.
+	- Interfaces restrictions :-
+		- They can only inherit from other intefaces but not from other 			contracts.
+		- They cannot declare state variables.
+		- They cannot declare constructor.
+		- Function can be declares but not implemented.
+		- All declared functions must be external.
+- all the code with explanation of code is present in "Interface.sol"
+- Interface are also cannot be depolyed to the blockchain, this is just a blueprint.
