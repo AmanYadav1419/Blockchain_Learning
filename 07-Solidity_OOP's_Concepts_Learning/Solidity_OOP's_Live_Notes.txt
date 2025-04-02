@@ -64,5 +64,10 @@ Interface :-
 		- They cannot declare constructor.
 		- Function can be declares but not implemented.
 		- All declared functions must be external.
-- all the code with explanation of code is present in "Interface.sol"
+- all the code with explanation of code is present in "Interface.sol" file.
 - Interface are also cannot be depolyed to the blockchain, this is just a blueprint.
+
+Polymorphism :-
+- polymorphism is one of the core concepts of object oriented programming (OOP) and describes situation in which something occurs in serveral different forms.
+- Poly means many forms , matalb ki me ek function ke namm se multiple function bana sakta hai.
+- all the code with explanation of code is present in "Polymorphism.sol" file.
