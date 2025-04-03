@@ -71,3 +71,13 @@ Polymorphism :-
 - polymorphism is one of the core concepts of object oriented programming (OOP) and describes situation in which something occurs in serveral different forms.
 - Poly means many forms , matalb ki me ek function ke namm se multiple function bana sakta hai.
 - all the code with explanation of code is present in "Polymorphism.sol" file.
+
+Events :-
+- event ek tarah ka ye bhi ek function hai.
+- ham same name se event nahi bana sakte.
+- jab event bana lete hai then to event ek function he hai , to event ko call karne ka tarika hai,
+- by using "emit" keyword
+- all the code with explanation of code is present in "Event.sol" file.
+- after depolying and testing contract, jab ham transaction check kare ide me to waha "logs" nam se data present hoga.
+- the "logs" are basically thing in which the event data is stored.
+- so log is a place where everything is maintained.
