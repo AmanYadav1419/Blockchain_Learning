@@ -75,9 +75,21 @@ Polymorphism :-
 Events :-
 - event ek tarah ka ye bhi ek function hai.
 - ham same name se event nahi bana sakte.
-- jab event bana lete hai then to event ek function he hai , to event ko call karne ka tarika hai,
-- by using "emit" keyword
-- all the code with explanation of code is present in "Event.sol" file.
+- jab event bana lete hai then to event bhi ek type ka function he hai , to event ko call karne ka tarika hai, by using "emit" keyword.
 - after depolying and testing contract, jab ham transaction check kare ide me to waha "logs" nam se data present hoga.
 - the "logs" are basically thing in which the event data is stored.
 - so log is a place where everything is maintained.
+- all the code with explanation of code is present in "Event.sol" file.
+- events jo hai wo kaffi useful hote hai, specially tab jab jab aap koi third party application jase ki koi external system hai jo ki ye detect kar raha hai ki smart contract me kuch hua ki nahi hua
+- events me logs hota hai, like jo bhi kuch hua hamne kiya uska ek log maintained hoga.
+- consider hamare smart contract ko hazaro log use kar rahe hai , to ham logs ke help ke through ye dekh sakte hai konse user ne kya kya kiya , kitne ether transfer kiye and all the other information jo ki log me store ho rahi hai.
+- Hamara Gas cost kaffi bachta hai by using events so in comparing to returning some values in function with event and emit , event emit required requires the less gas cost.
+- storage cost of events is also less, rather than storing storing historical data in state variables.
+- so in general the summary is there are three advantages of using events :-
+     	1. External system communication medium 
+     	2. Gas consumption
+    	3. Historical data
+- Events are inheritable members of contracts.
+- When you call them, they cause the argumments to be stored in trasactions law-a special daa structure in the blockchain.
+- These logs are associated with theadress of the contract, are incorporated into the blockchain and stay as long as block is accesible.
+- The log and event data is not accesible from within contacts (not even from the contract that created them).
