@@ -24,7 +24,7 @@ contract WalletContractAssignment{
         // condition checking 
         require(msg.sender == walletOwner || msg.sender != _reciever, "Permission Denied")
         // remove the msg.value amount from wallet owner account. 
-        ownerAccountBalance -= msg.value
+        ownerAccountBalance -= msg.value // confusion need to check it "+=" or "-="
         _reciever.transfer(msg.value);
     }
 

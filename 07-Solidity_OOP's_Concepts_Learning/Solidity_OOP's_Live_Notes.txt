@@ -101,3 +101,19 @@ Wallet Smart Contract Assignment :-
 	4) owner of the contract can see the balance of it's own account.
 	5) Also create one event which get emitted whenever owner recieve ether 		from some other EOA account.
 	- Solved this assignment in file "WalletSmartContractAssignment.sol"
+
+Library :- 
+- it is one of the most important thing in smart contracts
+- as ham openzipplin ki library's ko use karte hai, hm kabhi pura code scratch se nahi likhte.
+- to create our own library need to write the "library" keyword then name of library.
+- and agar hame koi dusre new file create kar ke usme library realted code likhana hai to ham likh sakte hai
+- bass usse library ke code ko import karne ke liye , hame jo file me import karna hai ham uss file me ye below syntax likh denge :-
+	:- import "File_path_File_name";
+	:- e.g "./Math.sol";
+- here is the syntax & example of using Maths library we have created in Library.sol file :-
+    	:- using Maths for uint256;
+- why should we use library :- because hame koi code barr barr na likhna pade, kuch code hota hai jo ki reusable hota hai to esliye jo code already jiss library me hai waha se use kar lete hai , taki time bhi bache and human efforts bhi.
+- Library is a statless , yaha pe state variable ka use nahi karte., aap eske through koi bhi state me change nahi karte., aap bass iske functions ka use karte ho.
+- jab aap koi library ka use kar ke badd me koi contract me usse use kar ke contract ko deploy karte ho to library jo hai wo automatically aapke contract se attach ho jatti hai and sath me depoly ho jati hai automatically no need to do something extra.
+- used for upgradable contracts.
+- all the code and explanation is present in "Library.sol" file.
