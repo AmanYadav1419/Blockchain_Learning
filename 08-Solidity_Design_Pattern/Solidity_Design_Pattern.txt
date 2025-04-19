@@ -1,0 +1,9 @@
+Contents :-
+	i) Self-Destruct
+	ii) Factory Pattern
+	iii) Mapping Iterator
+	iv) Withdrawal Pattern
+	v) Name Registry
+
+- so the self-destruct pattern and withdrawal patterns are one of the most important pattern, because of this ham kai sarre attacks bacha sakte hai.
+- one more thing we learn is re-entrancy attack, as jyda tar contract jo hack hote hai wo re-entrancy attack se he hote hai.
