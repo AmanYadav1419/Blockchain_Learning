@@ -1,3 +1,4 @@
+ 01 - Solidity Design Patterns - Part A video content :- 
 Contents :-
 	i) Self-Destruct
 	ii) Factory Pattern
@@ -7,3 +8,29 @@ Contents :-
 
 - so the self-destruct pattern and withdrawal patterns are one of the most important pattern, because of this ham kai sarre attacks bacha sakte hai.
 - one more thing we learn is re-entrancy attack, as jyda tar contract jo hack hote hai wo re-entrancy attack se he hote hai.
+
+Before starting with these topics let's understand and learn some concept's that are essential
+
+- 1) Fallback Function :-
+- the fallback function is executed on a call to the contract if none of the other functions match the given function signature, or if no data was supplied at all and there is no receive Ether function.
+- Fallback function is optinally payable.
+- A contract can have at most one fallback function, declared using either fallbacks() external [payable] or fallback (bytes calldata input) external [payable] returns (bytes memory output)
+- This function must have external visibility.
+- A fallback function can be virtual, can override and can have modifiers.
+- The fallback function always receives data, but in order to also receive Ether it must be marked payable.
+- In hindi explanation :-
+- fallback function wo function hota hai, jo ki tab excute hota hai jab aap ke contract ka koi bhi function excute na kiya gaya ho.
+- mannlo koi user ne koi ase function ko call kiya ho jo aapke contract me hai he nahi , tab aapka fallback function excute hota hai.
+- aapke contract me sirf ek fallback function ho sakta hai, ek se jyda fallback function nahi ho sakta. ya to koi fallback function nahi ya to sirf ek fallback function.
+- all the code and explanation is present in "Fallback_Function.sol" file.
+- how the fallback function works , here is the guide :- 
+	1) sabse phele compile kar lete hai smart contract ko , 
+	2) then click on compilation details.
+	3) then there is an option of "FUNCTIONHASHES", click on it , then it 		shows the hashes of function with all functions present in the smartcontract. hash are get from SHA256, copy any of the function hash.
+	4) to basically fallback function tab call hota hai, jab aapke contract ka koi bhi function call nahi hota hai. to basically ye possible hai with the help of "low level interaction" in solidity.
+	5) low level interaction karne ke liye, ham jayenge depoly section me , after depolying smart contract, in that below there is a section named "Low level interactions" , so in that ham hash function ko paste karenge.
+	6) but wo excute karne ke liye hame hamare code me fallback function defined karna padega , otherwise it will give an error " 'Fallback' function is not defined ".
+	7) agar ham low level interaction kar rahe hai, and hamare functions me data pass ho rahe hai to specific function ko call karte samay hame low level interaction me data pass karna padega., so that's why make some changes removed the data passed in the function
+	8) to call with the low level interaction , with the function hash , we must need to write "0x" before the function hash.
+	9) so agar by mistake hash function ko low level interaction me paste karte samay kuch mistake hui to waha pe hamara asa koi function to exist nahi karta tab yahi pe hamara fallback function excute hota hai. and the transaction will be succesful but fallback function wil be excuted and which ever is written in code present in fallback function will work.
+     	10) fallback sirf low level par he call kar sakte hai asa nahi , it can work on high level also. 
